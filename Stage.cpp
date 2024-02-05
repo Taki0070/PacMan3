@@ -29,18 +29,19 @@ namespace
 bool Stage::IsWall(int _x, int _y)
 {
 
-	if (stageData_[_y][_x] == STAGE_OBJ::WALL ) {
-		return false;
+	if (stageData_[_y][_x] == STAGE_OBJ::WALL ) 
+	{
+		return true;
 	}
 	else
-	return true;
+	return false;
 }
 
 Stage::Stage(GameObject* parent)
 	:GameObject(parent, "Stage")
 {
 	CsvReader csv;
-	csv.Load("map.csv");
+	csv.Load("map2.csv");
 
 	stageWidth_ = csv.GetWidth();
 	stageHight_ = csv.GetHeight();

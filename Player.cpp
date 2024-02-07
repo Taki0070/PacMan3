@@ -21,7 +21,7 @@ void Player::Initialize()
 	assert(hModel_ >= 0);
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;
-	pStage_ = (Stage *)FindObject("Stage");//規定からは アップキャストorダウンキャスト
+	pStage_ = (Stage *)FindObject("Stage");//規定は アップキャストorダウンキャスト
 
 }
 
@@ -32,7 +32,6 @@ void Player::Update()
 	//	UP, LEFT, DOWN, RIGHT, NONE,
 	//};
 	//int moveDir = Dir::NONE;
-
 	XMVECTOR vFront = { 0, 0, 1, 0 };
 	XMVECTOR move{ 0, 0, 0, 0 };
 
@@ -59,7 +58,7 @@ void Player::Update()
 
 
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
-	XMVECTOR posTmp = XMVectorZero(); //ゼロベクトルで初期化
+	XMVECTOR posTmp = XMVectorZero(); //すべてゼロ
 	posTmp = pos + speed_ * move;
 
 	int tx, ty;
@@ -69,9 +68,8 @@ void Player::Update()
 	{
 		pos = posTmp;
 	}
-
 	
-	Debug::Log("(X,Z)=");
+	/*Debug::Log("(X,Z)=");
 	Debug::Log(XMVectorGetX(pos));
 	Debug::Log(",");
 	Debug::Log(XMVectorGetZ(pos), true);
@@ -81,27 +79,34 @@ void Player::Update()
 	Debug::Log(",");
 	Debug::Log(ty);
 	Debug::Log(" : ");
-	Debug::Log(pStage_->IsWall(tx, ty), true);
-
+	Debug::Log(pStage_->IsWall(tx, ty), true);*/
+	
 
 	if (!XMVector3Equal(move, XMVectorZero())) {
 		XMStoreFloat3(&(transform_.position_), pos);
+		//XMMATRIX rot = XMMatrixRotationY(-XM_PIDIV2); // π/2 ＝　90°
+		//XMVECTOR modifiedVec = XMPlaneTransform(move, rot);
+		//Debug::Log(XMVectorGetX(modifiedVec));
+		//Debug::Log(",");
+		//Debug::Log(XMVectorGetZ(modifiedVec));
 
-		XMVECTOR vdot = XMVector3Dot(vFront, move);
-		assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
-		float angle = acos(XMVectorGetX(vdot));
+		float angle = atan2(XMVectorGetX(move), XMVectorGetZ(move));
+		Debug::Log("=>");
+		Debug::Log(XMConvertToDegrees(angle), true);
+	
+		//XMVECTOR vdot = XMVector3Dot(vFront, move);
+		//assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
+		////float angle = acos(XMVectorGetX(vdot));
+		//float angle = atan2(XMVectorGetX(move), XMVectorGetZ(move));
 
-		XMVECTOR vCross = XMVector3Cross(vFront, move);
+		/*XMVECTOR vCross = XMVector3Cross(vFront, move);
 		if (XMVectorGetY(vCross) < 0)
 		{
 			angle *= -1;
-		}
+		}*/
 
 		transform_.rotate_.y = XMConvertToDegrees(angle);
 	}
-
-	//float rotAngle[5]{ 0, -90, 180, 90, 180 };
-	//transform_.rotate_.y = rotAngle[moveDir];
 
 }
 

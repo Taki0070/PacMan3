@@ -41,7 +41,7 @@ Stage::Stage(GameObject* parent)
 	:GameObject(parent, "Stage")
 {
 	CsvReader csv;
-	csv.Load("map2.csv");
+	csv.Load("map.csv");
 
 	stageWidth_ = csv.GetWidth();
 	stageHight_ = csv.GetHeight();

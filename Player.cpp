@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Stage.h"
+#include "Gauge.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Debug.h"
@@ -12,6 +13,7 @@ namespace
 
 Player::Player(GameObject* parent)
 	:GameObject(parent, "Player"), hModel_(-1), speed_(PLAYER_MOVE_SPEED),pStage_(nullptr)
+	,hpCrr_(100),hpMax_(100)
 {
 }
 
@@ -68,7 +70,14 @@ void Player::Update()
 	{
 		pos = posTmp;
 	}
-	
+	else
+	{
+		hpCrr_ = hpCrr_ - 2;
+		if (hpCrr_ < 0)
+		{
+			hpCrr_ = 0;
+		}
+	}
 	/*Debug::Log("(X,Z)=");
 	Debug::Log(XMVectorGetX(pos));
 	Debug::Log(",");
@@ -107,7 +116,8 @@ void Player::Update()
 
 		transform_.rotate_.y = XMConvertToDegrees(angle);
 	}
-
+	Gauge* Gau = (Gauge*)FindObject("Gauge"); // インスタンス→Find	を見つける
+	Gau->SetGaugeVal(hpCrr_, hpMax_);
 }
 
 void Player::Draw()

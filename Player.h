@@ -8,6 +8,8 @@ class Player :
 	int hModel_;
 	float speed_;
 	Stage* pStage_;
+	int hpMax_;//最大Hp
+	int hpCrr_;//ＨP
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

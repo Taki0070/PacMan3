@@ -5,7 +5,7 @@
 
 namespace
 {
-	//const int STAGE_X{ 15 };
+	//const int STAGE_X{ 15 };/
 	//const int STAGE_Y{ 15 };
 	/*const int sArray[STAGE_Y][STAGE_X]{
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},

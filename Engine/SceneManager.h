@@ -1,11 +1,17 @@
 #pragma once
 #include "global.h"
 #include "GameObject.h"
+#include"../PlayScene.h"
+#include"../TITLE_SCENE.h"
+#include"../pose_scene.h"
 
 //ÉQÅ[ÉÄÇ…ìoèÍÇ∑ÇÈÉVÅ[Éì
 enum SCENE_ID
 {
-	SCENE_ID_PLAY = 0,
+	SCENE_ID_TITLE = 0,
+	SCENE_ID_PLAY ,
+	SCENE_ID_POSE,
+
 };
 
 //-----------------------------------------------------------

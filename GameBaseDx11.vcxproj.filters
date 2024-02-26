@@ -107,6 +107,8 @@
     <ClCompile Include="Gauge.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="TITLE_SCENE.cpp" />
+    <ClCompile Include="pose_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -187,6 +189,8 @@
     <ClInclude Include="Gauge.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="TITLE_SCENE.h" />
+    <ClInclude Include="pose_scene.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

@@ -4,6 +4,7 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Debug.h"
+#include "Engine/SceneManager.h"
 
 namespace 
 {
@@ -118,6 +119,13 @@ void Player::Update()
 	}
 	Gauge* Gau = (Gauge*)FindObject("Gauge"); // インスタンス→Find	を見つける
 	Gau->SetGaugeVal(hpCrr_, hpMax_);
+
+	if (Input::IsKey(DIK_P))
+	{
+		SceneManager* pS = (SceneManager*)FindObject("SceneManager");
+		pS->ChangeScene(SCENE_ID_POSE);
+	}
+
 }
 
 void Player::Draw()
